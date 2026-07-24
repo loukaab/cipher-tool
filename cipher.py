@@ -16,6 +16,8 @@ class Ciphers:
         for character in plaintext:
             if character in Ciphers.characters_set:
                 ciphertext.append(Ciphers.characters[(Ciphers.characters.index(character) + shift) % len(Ciphers.characters)])
+            else:
+                ciphertext.append(character)
         
         return ''.join(ciphertext)
 

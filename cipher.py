@@ -15,7 +15,10 @@ class Ciphers:
         ciphertext = []
 
         for character in plaintext:
-            if character in Ciphers.characters_set:
+            capitalized = character.isupper()
+            if character in Ciphers.characters_set and capitalized:
+                ciphertext.append(Ciphers.characters[(Ciphers.characters.index(character) + shift) % len(Ciphers.characters)].capitalize())
+            elif character in Ciphers.characters_set and not capitalized:
                 ciphertext.append(Ciphers.characters[(Ciphers.characters.index(character) + shift) % len(Ciphers.characters)])
             else:
                 ciphertext.append(character)

@@ -9,6 +9,7 @@ class Ciphers:
                   'w', 'x', 'y', 'z']
     characters_set = set(characters)
 
+    @staticmethod
     def CaesarCipher(plaintext: str, shift: int) -> str:
 
         ciphertext = []

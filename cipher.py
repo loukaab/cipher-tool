@@ -13,9 +13,10 @@ class Ciphers:
     def CaesarCipher(plaintext: str, shift: int) -> str:
 
         ciphertext = []
+        lowercase_plaintext = plaintext.casefold()
 
-        for character in plaintext:
-            capitalized = character.isupper()
+        for idx, character in enumerate(lowercase_plaintext):
+            capitalized = plaintext[idx].isupper()
             if character in Ciphers.characters_set and capitalized:
                 ciphertext.append(Ciphers.characters[(Ciphers.characters.index(character) + shift) % len(Ciphers.characters)].capitalize())
             elif character in Ciphers.characters_set and not capitalized:

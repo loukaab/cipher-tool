@@ -10,12 +10,14 @@ class Ciphers:
     characters_set = set(characters)
 
     @staticmethod
-    def Caesar(plaintext: str, shift: int) -> str:
+    def Caesar() -> str:
+
+        plaintext = input('Enter plaintext: \n')
+        shift = int(input('Define shift (0 - 25): '))
 
         ciphertext = []
-        lowercase_plaintext = plaintext.casefold()
 
-        for idx, character in enumerate(lowercase_plaintext):
+        for idx, character in enumerate(plaintext.casefold()):
             capitalized = plaintext[idx].isupper()
             if character in Ciphers.characters_set and capitalized:
                 ciphertext.append(Ciphers.characters[(Ciphers.characters.index(character) + shift) % len(Ciphers.characters)].capitalize())
@@ -27,7 +29,10 @@ class Ciphers:
         return ''.join(ciphertext)
     
     @staticmethod
-    def Vigenere(plaintext: str, keyword: str) -> str:
+    def Vigenere() -> str:
+
+        plaintext = input('Enter plaintext: \n')
+        keyword = input('Enter keyword: ')
 
         ciphertext = []
         keyword_shifts = []

@@ -1,9 +1,8 @@
 import cipher
 
+user_choice = int(input('Choose a cipher...\n1: Caesar\n2: Vigenere\n'))
+cipher_choice_map = {1 : cipher.Ciphers.Caesar, 2 : cipher.Ciphers.Vigenere}
 
-plaintext = input('What would you like to encrypt?\n')
-#shift = int(input('How far would you like to shift (0 - 25)?\n'))
-keyword = input('What is your keyword?\n')
-ciphertext = cipher.Ciphers.Vigenere(plaintext, keyword)
+ciphertext = cipher_choice_map[user_choice]()
 
-print(f'Here is your plaintext shifted {keyword} places\n\n{ciphertext}')
+print(f'You chose cipher {user_choice}.\nCiphertext:\n\n{ciphertext}')

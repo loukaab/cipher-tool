@@ -10,7 +10,7 @@ class Ciphers:
     characters_set = set(characters)
 
     @staticmethod
-    def CaesarCipher(plaintext: str, shift: int) -> str:
+    def Caesar(plaintext: str, shift: int) -> str:
 
         ciphertext = []
         lowercase_plaintext = plaintext.casefold()
@@ -25,4 +25,26 @@ class Ciphers:
                 ciphertext.append(character)
         
         return ''.join(ciphertext)
+    
+    @staticmethod
+    def Vigenere(plaintext: str, keyword: str) -> str:
 
+        ciphertext = []
+        keyword_shifts = []
+        character_pointer = 0
+
+        for character in keyword.casefold():
+            keyword_shifts.append(Ciphers.characters.index(character))
+
+        for idx, character in enumerate(plaintext.casefold()):
+            capitalized = plaintext[idx].isupper()
+            if character in Ciphers.characters_set and capitalized:
+                ciphertext.append(Ciphers.characters[(Ciphers.characters.index(character) + keyword_shifts[character_pointer % len(keyword)]) % len(Ciphers.characters)].capitalize())
+                character_pointer += 1
+            elif character in Ciphers.characters_set and not capitalized:
+                ciphertext.append(Ciphers.characters[(Ciphers.characters.index(character) + keyword_shifts[character_pointer % len(keyword)]) % len(Ciphers.characters)])
+                character_pointer += 1
+            else:
+                ciphertext.append(character)
+
+        return ''.join(ciphertext) 
